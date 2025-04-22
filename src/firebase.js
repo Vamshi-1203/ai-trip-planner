@@ -5,7 +5,7 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 //Give your credentials from your account in firebase
 
 const firebaseConfig = {
-  apiKey: "GIVE_YOUR_KEY",
+  apiKey: "",
   authDomain: "",
   projectId: "",
   storageBucket: "",
