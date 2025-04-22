@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)
 
-GEMINI_API_KEY = "AIzaSyAvSuW0cvn7_Gko8c2mi6nDZSeT9WET38g"
+GEMINI_API_KEY = "ADD_YOUR_KEY"
 
 @app.route("/generate-itinerary", methods=["POST"])
 def generate_itinerary():
