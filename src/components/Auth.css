@@ -1,0 +1,46 @@
+/* Center the auth container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Custom Google Sign In Button */
+.google-signin-button {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #4285f4;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #4285f4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.google-signin-button:hover {
+  background-color: #f1f1f1;
+}
+
+.google-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+/* Custom Sign Out Button */
+.signout-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.signout-button:hover {
+  background-color: #3367d6;
+}

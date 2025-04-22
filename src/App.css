@@ -1,38 +1,671 @@
-.App {
-  text-align: center;
+/* Light & Dark Theme */
+[data-theme="light"] {
+  background-color: #f9f9f9;
+  color: #222;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+[data-theme="dark"] {
+  background-color: #222;
+  color: #f9f9f9;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(to right, #6c5ce7, #5649c0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.navbar-buttons button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: var(--button-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.navbar-buttons button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Profile Section */
+.profile-container {
+  position: relative;
+  margin-left: 0.5rem;
+}
+
+.profile-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Dark Theme Navbar */
+[data-theme="dark"] .navbar {
+  background: linear-gradient(to right, #2d2d2d, #1a1a1a);
+}
+
+[data-theme="dark"] .navbar-buttons button {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .navbar-buttons button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.6rem 1rem;
+  }
+
+  .navbar-title {
+    font-size: 1.2rem;
+  }
+
+  .navbar-buttons {
+    gap: 0.5rem;
+  }
+
+  .navbar-buttons button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .profile-icon {
+    width: 32px;
+    height: 32px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Sign-in Box */
+.sign-in-box {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 70vh;
+  text-align: center;
+}
+
+.sign-in-box p {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  margin-top: 4rem; /* Space for fixed navbar */
+  min-height: calc(100vh - 4rem);
+  background-color: var(--primary-bg);
+}
+
+/* Trip Form */
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.trip-form label {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+select.input-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+select.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Dark Mode Styling */
+[data-theme="dark"] .input-field {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+[data-theme="dark"] .submit-button {
+  background-color: #ff9800;
+}
+
+[data-theme="dark"] .submit-button:hover {
+  background-color: #e68900;
+}
+
+/* 📌 New: Dropdown Container for Places */
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+/* 📌 New: Dropdown List */
+.dropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 2px;
+  padding: 0;
+  list-style: none;
+  z-index: 10;
+}
+
+/* 📌 New: Dropdown Items */
+.dropdown li {
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dropdown li:hover {
+  background: #f1f1f1;
+}
+
+/* 📌 Dark Mode Support for Dropdown */
+[data-theme="dark"] .dropdown {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+[data-theme="dark"] .dropdown li:hover {
+  background: #444;
+}
+
+.trip-history {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.trip-history ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.trip-history li {
+  padding: 10px;
+  background: #f1f1f1;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trip-history .delete-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.trip-history .back-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+[data-theme="dark"] .trip-history li {
+  background: #333;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+[data-theme="dark"] .trip-history .delete-btn {
+  background: #ff4444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+[data-theme="dark"] .trip-history .back-btn {
+  background: #ff9800;
+}
+
+/* Custom Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+/* AI Itinerary Box */
+.itinerary-box {
+  background: linear-gradient(135deg, #f3f3f3, #ffffff);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto; /* centers the box horizontally */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  max-width: 600px;
+  text-align: center; /* centers text inside the box */
+  transition: all 0.3s ease-in-out;
+}
+
+.itinerary-box h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #007bff;
+  text-align: center;
+}
+
+.itinerary-box p {
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: pre-line; /* Ensures proper line breaks */
+}
+
+/* Dark Mode */
+[data-theme="dark"] .itinerary-box {
+  background: linear-gradient(135deg, #333, #444);
+  color: #f9f9f9;
+  border: 1px solid #555;
+}
+
+[data-theme="dark"] .itinerary-box h3 {
+  color: #ff9800;
+}
+
+/* Login Page */
+.login-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.login-container h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-container p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Profile Card */
+.profile-card {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 300px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.profile-card-header {
+  padding: 20px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+}
+
+.profile-img-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card-header-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.profile-card-header-info p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.profile-card-body {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.profile-card-body p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.profile-card-footer {
+  padding: 15px;
+  text-align: center;
+}
+
+.logout-btn {
+  background-color: #f44336; /* red background */
+  color: white; /* white text */
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Theme Variables */
+[data-theme="light"] {
+  --card-bg: white;
+  --primary-color: grey;
+  --secondary-color: #0056b3;
+  --text-color: #333;
+  --border-color: #eee;
+  --danger-color: #dc3545;
+  --danger-hover-color: #c82333;
+}
+
+[data-theme="dark"] {
+  --card-bg: #2c3e50;
+  --primary-color: grey;
+  --secondary-color: #2980b9;
+  --text-color: #ecf0f1;
+  --border-color: #34495e;
+  --danger-color: #e74c3c;
+  --danger-hover-color: #c0392b;
+}
+
+/* Trip List */
+.trip-list-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.trip-list-container h2 {
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.trip-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.trip-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.trip-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.trip-info h3 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.trip-meta {
+  display: flex;
+  gap: 10px;
+  color: var(--text-secondary);
+}
+
+.trip-meta span {
+  background: var(--secondary-bg);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.trip-details {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+.itinerary-content {
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.delete-btn {
+  background: var(--danger-color);
+  color: var(--danger-color);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: var(--danger-hover);
+}
+
+/* App Container */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.trip-form-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.trip-form-intro .form-heading {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.trip-form-intro .form-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.trip-list-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.trip-list-intro .list-heading {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.trip-list-intro .list-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.no-trips-container {
+  text-align: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.no-trips {
+  font-size: 1.2rem;
+  color: var(--text-muted-color);
+  margin-bottom: 1rem;
+}
+
+.no-trips-suggestion {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-style: italic;
 }
